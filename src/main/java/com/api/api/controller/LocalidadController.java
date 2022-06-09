@@ -14,7 +14,7 @@ import java.util.List;
 public class LocalidadController {
     @Autowired
     private LocalidadRepository localidadRepository;
-    // obtener todos los eventos
+    // obtener todas las localidades
     @GetMapping
     public List<Localidad> getAllLocalidades(){
         return localidadRepository.findAll();
@@ -38,7 +38,7 @@ public class LocalidadController {
     @PutMapping("actualizar/{id}")
     public ResponseEntity<Localidad> updateLocalidad(@PathVariable long id,@RequestBody Localidad localidadDetails) {
         Localidad updateLocalidad = localidadRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Ninguna localidad se tiene con ese: " + id));
 
         updateLocalidad.setNombre(localidadDetails.getNombre());
         localidadRepository.save(updateLocalidad);
